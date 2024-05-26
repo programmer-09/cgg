@@ -1,0 +1,2170 @@
+1. Write a Program to implement DDA Line drawing algorithm.
+
+#include<stdio.h>
+#include<graphics.h>
+
+void dda(int x, int y, int x1, int y1){
+	float dx, dy, x2, y2, steps, i;
+	dx = (x1 - x);
+	dy = (y1 - y);
+
+	if(dx > dy){
+		steps = dx;
+	}
+	else{
+		steps = dy;
+	}
+	dx = dx / steps;
+	dy = dy / steps;
+	x2 = x;
+	y2 = y;
+	i = 1;
+
+	while(i <= steps){
+		putpixel(x2, y2, WHITE);
+		x2 += dx;
+		y2 += dy;
+		i++;
+	}
+}
+int main(){
+	int gd = DETECT, gm;
+	initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");
+	dda(100, 200, 300, 200);
+	dda(100, 100, 100, 300);
+	
+	getch();
+	closegraph();
+	return 0;
+}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+2. Write a Program to implement Bresenham’s Line drawing algorithm.
+
+#include<graphics.h>
+#include<stdio.h>
+#include<conio.h>
+void breline(int x1, int y1, int x2, int y2) {
+int dx = abs(x2 - x1);
+int dy = abs(y2 - y1);
+int sx = (x1 < x2) ? 1 : -1;
+int sy = (y1 < y2) ? 1 : -1;
+int err = dx - dy;
+int e2;
+while (x1 != x2 || y1 != y2) {
+putpixel(x1, y1, WHITE);
+e2 = 2 * err;
+if (e2 > -dy) {
+err -= dy;
+x1 += sx;
+}
+if (e2 < dx) {
+err += dx;
+y1 += sy;
+}
+}
+}
+int main()
+{
+int gd=DETECT,gm;
+initgraph(&gd,&gm,(char*)"C://TURBOC3//BGI");
+breline(100,100,300,100);
+getch();
+closegraph();
+return 0;
+}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+3. Write a Program to implement Bresenham’s Circle drawing algorithm.
+
+#include<stdio.h>
+#include<conio.h>
+#include<graphics.h>
+void cir(int x,int y,int r)
+{
+int i=0,j=r,p=3-2*r;
+while(i<=j)
+{
+putpixel(x+i,y+j,WHITE);
+putpixel(x-i,y-j,WHITE);
+putpixel(x+j,y+i,WHITE);
+putpixel(x-j,y-i,WHITE);
+putpixel(x-i,y+j,WHITE);
+putpixel(x+i,y-j,WHITE);
+putpixel(x-j,y+i,WHITE);
+putpixel(x+j,y-i,WHITE);
+if(p<0)
+{
+i++;
+p=p+4*i+6;
+}
+else
+{
+i++;
+j--;
+p=p+4*(i-j)+10;
+}
+}
+}
+int main()
+{
+int gd=DETECT,gm;
+initgraph(&gd,&gm,(char*)"C://TURBOC3//BGI");
+cir(300,200,50);
+getch();
+closegraph();
+return 0;
+}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+4. Write a Program to implement Mid-point Circle drawing algorithm.
+
+#include<stdio.h>
+#include<conio.h>
+#include<graphics.h>
+void cir(int x,int y,int r)
+int i,j;
+{
+int p=1-r;
+i=0;
+j=r;
+while(i<=j)
+{
+putpixel(x+i,y+j,WHITE);
+putpixel(x+j,y+i,WHITE);
+putpixel(x-j,y+i,WHITE);
+putpixel(x+j,y-i,WHITE);
+putpixel(x-i,y-j,WHITE);
+putpixel(x-j,y-i,WHITE);
+putpixel(x-i,y+j,WHITE);
+putpixel(x+i,y-j,WHITE);
+if(p<0)
+{
+i++;
+p=p+2*i+1;
+}
+else
+{
+i++;
+j--;
+p=p-2*j+2*i+1;
+}
+}
+}
+int main()
+{
+int gd=DETECT,gm;
+initgraph(&gd,&gm,(char*)"C://TURBOC3//BGI");
+cir(300,200,50);
+getch();
+closegraph();
+return 0;
+}
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+5. Write a Program to draw a face of Teddy bear using midpoint algorithm only.
+
+
+#include<stdio.h>
+#include<conio.h>
+#include<graphics.h>
+int i,j;
+void cir(int x,int y,int r)
+{
+int p=1-r;
+i=0;
+j=r;
+while(i<=j)
+{
+putpixel(x+i,y+j,WHITE);
+putpixel(x+j,y+i,WHITE);
+putpixel(x-j,y+i,WHITE);
+putpixel(x+j,y-i,WHITE);
+putpixel(x-i,y-j,WHITE);
+putpixel(x-j,y-i,WHITE);
+putpixel(x-i,y+j,WHITE);
+putpixel(x+i,y-j,WHITE);
+if(p<0)
+{
+i++;
+p=p+2*i+1;
+}
+else
+{
+i++;
+j--;
+p=p-2*j+2*i+1;
+}
+}
+}
+int main()
+{
+int gd=DETECT,gm;
+initgraph(&gd,&gm,(char*)"C://TURBOC3//BGI");
+cir(300,200,50);
+getch();
+closegraph();
+return 0;
+}
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+6. Write a Program to draw a car using Bresenham’s algorithm only.
+
+#include<stdio.h>
+#include<conio.h>
+#include<graphics.h>
+
+
+void breline(int x1, int y1, int x2, int y2) {
+int dx = abs(x2 - x1);
+int dy = abs(y2 - y1);
+int sx = (x1 < x2) ? 1 : -1;
+int sy = (y1 < y2) ? 1 : -1;
+int err = dx - dy;
+int e2;
+while (x1 != x2 || y1 != y2) {
+putpixel(x1, y1, WHITE);
+e2 = 2 * err;
+if (e2 > -dy) {
+err -= dy;
+x1 += sx;
+}
+if (e2 < dx) {
+err += dx;
+y1 += sy;
+}
+}
+}
+
+void cir(int x,int y,int r)
+{
+int i=0,j=r,p=3-2*r;
+while(i<=j)
+{
+putpixel(x+i,y+j,WHITE);
+putpixel(x-i,y-j,WHITE);
+putpixel(x+j,y+i,WHITE);
+putpixel(x-j,y-i,WHITE);
+putpixel(x-i,y+j,WHITE);
+putpixel(x+i,y-j,WHITE);
+putpixel(x-j,y+i,WHITE);
+putpixel(x+j,y-i,WHITE);
+if(p<0)
+{
+i++;
+p=p+4*i+6;
+}
+else
+{
+i++;
+j--;
+p=p+4*(i-j)+10;
+}
+}
+}
+int main()
+{
+int gd=DETECT,gm;
+initgraph(&gd,&gm,(char*)"C://TURBOC3//BGI");
+cir(300,200,50);
+breline(100,100,300,100);
+getch();
+closegraph();
+return 0;
+}
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+7. Write a Program to implement Flood fill algorithm for a convex polygon. Draw polygon edges by DDA / Bresenham line algorithm.
+
+
+#include<graphics.h>
+#include<stdio.h>
+#include<conio.h>
+void breline(int x1, int y1, int x2, int y2) {
+int dx = abs(x2 - x1);
+int dy = abs(y2 - y1);
+int sx = (x1 < x2) ? 1 : -1;
+int sy = (y1 < y2) ? 1 : -1;
+int err = dx - dy;
+int e2;
+while (x1 != x2 || y1 != y2) {
+putpixel(x1, y1, WHITE);
+e2 = 2 * err;
+if (e2 > -dy) {
+err -= dy;
+x1 += sx;
+}
+if (e2 < dx) {
+err += dx;
+y1 += sy;
+}
+}
+}
+
+
+void floodFill(int x, int y, int new_col, int old_col) {
+if (getpixel(x, y) == old_col) {
+putpixel(x, y, new_col);
+floodFill(x + 1, y, new_col, old_col);
+floodFill(x - 1, y, new_col, old_col);
+floodFill(x, y + 1, new_col, old_col);
+floodFill(x, y - 1, new_col, old_col);
+}
+}
+
+int main()
+{
+int gd=DETECT,gm;
+initgraph(&gd,&gm,(char*)"C://TURBOC3//BGI");
+breline(200,100,350,300);
+breline(200,100,50,300);
+breline(50,300,350,300);
+floodFill(200, 200, 11, 0);
+
+getch();
+closegraph();
+return 0;
+}
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+8. Write a Program to implement Boundary fill algorithm for a convex polygon. Draw polygon edges by DDA / Bresenham line algorithm.
+
+#include<graphics.h>
+#include<stdio.h>
+#include<conio.h>
+void breline(int x1, int y1, int x2, int y2) {
+int dx = abs(x2 - x1);
+int dy = abs(y2 - y1);
+int sx = (x1 < x2) ? 1 : -1;
+int sy = (y1 < y2) ? 1 : -1;
+int err = dx - dy;
+int e2;
+while (x1 != x2 || y1 != y2) {
+putpixel(x1, y1, WHITE);
+e2 = 2 * err;
+if (e2 > -dy) {
+err -= dy;
+x1 += sx;
+}
+if (e2 < dx) {
+err += dx;
+y1 += sy;
+}
+}
+}
+
+
+void boundaryFill(int x, int y, int fill_color,int boundary_color)
+{
+if(getpixel(x, y) != boundary_color &&
+getpixel(x, y) != fill_color)
+{
+putpixel(x, y, fill_color);
+boundaryFill(x + 1, y, fill_color, boundary_color);
+boundaryFill(x, y + 1, fill_color, boundary_color);
+boundaryFill(x - 1, y, fill_color, boundary_color);
+boundaryFill(x, y - 1, fill_color, boundary_color);
+}
+}
+
+int main()
+{
+int gd=DETECT,gm;
+initgraph(&gd,&gm,(char*)"C://TURBOC3//BGI");
+breline(200,100,350,300);
+breline(200,100,50,300);
+breline(50,300,350,300);
+boundaryFill(200, 110, 4, 15);
+
+getch();
+closegraph();
+return 0;
+}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+9. Write a Program to implement Fence fill algorithm for a concave polygon. Draw polygonedges by DDA / Bresenham line algorithm.
+
+
+#include<graphics.h>
+#include<stdio.h>
+#include<conio.h>
+void breline(int x1, int y1, int x2, int y2) {
+int dx = abs(x2 - x1);
+int dy = abs(y2 - y1);
+int sx = (x1 < x2) ? 1 : -1;
+int sy = (y1 < y2) ? 1 : -1;
+int err = dx - dy;
+int e2;
+while (x1 != x2 || y1 != y2) {
+putpixel(x1, y1, WHITE);
+e2 = 2 * err;
+if (e2 > -dy) {
+err -= dy;
+x1 += sx;
+}
+if (e2 < dx) {
+err += dx;
+y1 += sy;
+}
+}
+}
+
+
+void fenceFill(int x, int y, int fill_color,int boundary_color)
+{
+if(getpixel(x, y) != boundary_color &&
+getpixel(x, y) != fill_color)
+{
+putpixel(x, y, fill_color);
+fenceFill(x + 1, y, fill_color, boundary_color);
+fenceFill(x, y + 1, fill_color, boundary_color);
+fenceFill(x - 1, y, fill_color, boundary_color);
+fenceFill(x, y - 1, fill_color, boundary_color);
+}
+}
+
+int main()
+{
+int gd=DETECT,gm;
+initgraph(&gd,&gm,(char*)"C://TURBOC3//BGI");
+breline(200,100,350,300);
+breline(200,100,50,300);
+breline(50,300,350,300);
+fenceFill(200, 110, 4, 15);
+
+getch();
+closegraph();
+return 0;
+}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+10. Write a Program to implement Edge fill algorithm for a convex polygon. Draw polygon edges by DDA / Bresenham line algorithm.
+
+#include<graphics.h>
+#include<stdio.h>
+#include<conio.h>
+void breline(int x1, int y1, int x2, int y2) {
+int dx = abs(x2 - x1);
+int dy = abs(y2 - y1);
+int sx = (x1 < x2) ? 1 : -1;
+int sy = (y1 < y2) ? 1 : -1;
+int err = dx - dy;
+int e2;
+while (x1 != x2 || y1 != y2) {
+putpixel(x1, y1, WHITE);
+e2 = 2 * err;
+if (e2 > -dy) {
+err -= dy;
+x1 += sx;
+}
+if (e2 < dx) {
+err += dx;
+y1 += sy;
+}
+}
+}
+
+
+void edgeFill(int x, int y, int fill_color,int boundary_color)
+{
+if(getpixel(x, y) != boundary_color &&
+getpixel(x, y) != fill_color)
+{
+putpixel(x, y, fill_color);
+edgeFill(x + 1, y, fill_color, boundary_color);
+edgeFill(x, y + 1, fill_color, boundary_color);
+edgeFill(x - 1, y, fill_color, boundary_color);
+edgeFill(x, y - 1, fill_color, boundary_color);
+}
+}
+
+int main()
+{
+int gd=DETECT,gm;
+initgraph(&gd,&gm,(char*)"C://TURBOC3//BGI");
+breline(200,100,350,300);
+breline(200,100,50,300);
+breline(50,300,350,300);
+edgeFill(200, 110, 4, 15);
+
+getch();
+closegraph();
+return 0;
+}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+11. Write a Program to implement Scan line fill algorithm for a concave polygon. Draw polygon edges by DDA / Bresenham line algorithm.
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <graphics.h>
+
+int round(float num) {
+    return num < 0 ? num - 0.5 : num + 0.5;
+}
+
+void ddaLine(int x1, int y1, int x2, int y2) {
+    int dx = x2 - x1;
+    int dy = y2 - y1;
+    int steps, k;
+    float xIncrement, yIncrement;
+    float x = x1, y = y1;
+
+    if (abs(dx) > abs(dy)) {
+        steps = abs(dx);
+    } else {
+        steps = abs(dy);
+    }
+
+    xIncrement = dx / (float) steps;
+    yIncrement = dy / (float) steps;
+
+    putpixel(x, y, WHITE);
+
+    for (k = 0; k < steps; k++) {
+        x += xIncrement;
+        y += yIncrement;
+        putpixel(round(x), round(y), WHITE);
+    }
+}
+
+void scanFill(int x[], int y[], int edges) {
+    int i, j, temp;
+    int xmin = getmaxx(), xmax = 0;
+
+    for (i = 0; i < edges; i++) {
+        if (x[i] < xmin)
+            xmin = x[i];
+        if (x[i] > xmax)
+            xmax = x[i];
+    }
+
+    for (i = xmin; i <= xmax; i++) {
+        int interPoints[edges], count = 0;
+
+        for (j = 0; j < edges; j++) {
+            int next = (j + 1) % edges;
+
+            if ((y[j] > i && y[next] <= i) || (y[next] > i && y[j] <= i)) {
+                interPoints[count++] = x[j] + (i - y[j]) * (x[next] - x[j]) / (y[next] - y[j]);
+            }
+        }
+
+        for (j = 0; j < count - 1; j++) {
+            for (int k = 0; k < count - j - 1; k++) {
+                if (interPoints[k] > interPoints[k + 1]) {
+                    temp = interPoints[k];
+                    interPoints[k] = interPoints[k + 1];
+                    interPoints[k + 1] = temp;
+                }
+            }
+        }
+
+        for (j = 0; j < count; j += 2) {
+            ddaLine(interPoints[j], i, interPoints[j + 1], i);
+        }
+    }
+}
+
+int main() {
+    int gd = DETECT, gm;
+    initgraph(&gd, &gm, "C:\\Turboc3\\BGI");
+
+    int x[] = {100, 200, 300};
+    int y[] = {100, 300, 200};
+    int edges = 3;
+
+    for (int i = 0; i < edges; i++) {
+        int next = (i + 1) % edges;
+        ddaLine(x[i], y[i], x[next], y[next]);
+    }
+
+    scanFill(x, y, edges);
+
+    getch();
+    closegraph();
+    return 0;
+}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+12. Write a Program to implement 2D Scaling and rotation of a triangle.
+
+
+#include <graphics.h>
+#include <math.h>
+#include <stdio.h>
+
+void scale(int x[], int y[], int sx, int sy){
+    for (int i = 0; i < 3; i++){
+        x[i] = x[i] * sx;
+        y[i] = y[i] * sy;
+    }
+}
+
+void rotate(int x[], int y[], float theta) {
+    float rad = theta * (M_PI / 180.0); // Convert angle to radians
+    int x_new[3], y_new[3];
+    for (int i = 0; i < 3; i++) {
+        x_new[i] = x[i] * cos(rad) - y[i] * sin(rad);
+        y_new[i] = x[i] * sin(rad) + y[i] * cos(rad);
+    }
+    for (int i = 0; i < 3; i++) {
+        x[i] = x_new[i];
+        y[i] = y_new[i];
+    }
+}
+
+    int main(){
+    int gd = DETECT, gm;
+    int x[] = {100, 200, 150}; // Triangle vertices
+    int y[] = {100, 100, 200};
+
+    initgraph(&gd, &gm, "");
+    line(x[0], y[0], x[1], y[1]);
+    line(x[1], y[1], x[2], y[2]);
+    line(x[2], y[2], x[0], y[0]);
+
+    // Apply scaling
+    int sx = 2, sy = 1.5;
+    scale(x, y, sx, sy);
+
+    // Draw the scaled triangle
+    setcolor(RED);
+    line(x[0], y[0], x[1], y[1]);
+    line(x[1], y[1], x[2], y[2]);
+    line(x[2], y[2], x[0], y[0]);
+
+    // Apply rotation
+    float theta = 45;
+    rotate(x, y, theta);
+
+    // Draw the rotated triangle
+    setcolor(GREEN);
+    line(x[0], y[0], x[1], y[1]);
+    line(x[1], y[1], x[2], y[2]);
+    line(x[2], y[2], x[0], y[0]);
+
+    getch();
+    closegraph();
+    return 0;
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+13. Write a Program to implement 2D Scaling and translation of a triangle.
+
+#include <graphics.h>
+#include <math.h>
+#include <stdio.h>
+
+// Function to apply scaling
+void scale(int x[], int y[], int sx, int sy) {
+    for (int i = 0; i < 3; i++) {
+        x[i] = x[i] * sx;
+        y[i] = y[i] * sy;
+    }
+}
+
+
+void translate(int x[], int y[], int tx, int ty) {
+    int x_new[3], y_new[3];
+    for (int i = 0; i < 3; i++) {
+        x_new[i] = x[i] + tx;
+        y_new[i] = y[i] + ty;
+    }
+    for (int i = 0; i < 3; i++) {
+        x[i] = x_new[i];
+        y[i] = y_new[i];
+    }
+}
+
+int main() {
+    int gd = DETECT, gm;
+    int x[] = {100, 200, 150}; // Triangle vertices
+    int y[] = {100, 100, 200};
+
+    initgraph(&gd, &gm, "");
+
+    // Draw the original triangle
+    line(x[0], y[0], x[1], y[1]);
+    line(x[1], y[1], x[2], y[2]);
+    line(x[2], y[2], x[0], y[0]);
+
+    // Apply scaling
+    int sx = 2, sy = 1.5;
+    scale(x, y, sx, sy);
+
+    // Draw the scaled triangle
+    setcolor(RED);
+    line(x[0], y[0], x[1], y[1]);
+    line(x[1], y[1], x[2], y[2]);
+    line(x[2], y[2], x[0], y[0]); 
+    
+    int tx = 20, ty = 20;
+    translate(x, y, tx, ty);
+
+    // Draw the scaled triangle
+    setcolor(YELLOW);
+    line(x[0], y[0], x[1], y[1]);
+    line(x[1], y[1], x[2], y[2]);
+    line(x[2], y[2], x[0], y[0]);
+
+
+    getch();
+    closegraph();
+    return 0;
+}
+
+
+
+
+14. Write a Program to implement 2D rotation and translation of a triangle.
+
+#include <graphics.h>
+#include <math.h>
+#include <stdio.h>
+
+void rotate(int x[], int y[], float theta) {
+    float rad = theta * (M_PI / 180.0); 
+    int x_new[3], y_new[3];
+    for (int i = 0; i < 3; i++) {
+        x_new[i] = x[i] * cos(rad) - y[i] * sin(rad);
+        y_new[i] = x[i] * sin(rad) + y[i] * cos(rad);
+    }
+    for (int i = 0; i < 3; i++) {
+        x[i] = x_new[i];
+        y[i] = y_new[i];
+    }
+}
+
+
+void translate(int x[], int y[], int tx, int ty) {
+    int x_new[3], y_new[3];
+    for (int i = 0; i < 3; i++) {
+        x_new[i] = x[i] + tx;
+        y_new[i] = y[i] + ty;
+    }
+    for (int i = 0; i < 3; i++) {
+        x[i] = x_new[i];
+        y[i] = y_new[i];
+    }
+}
+
+int main() {
+    int gd = DETECT, gm;
+    int x[] = {100, 200, 150}; 
+    int y[] = {100, 100, 200};
+
+    initgraph(&gd, &gm, "");
+
+    // Draw the original triangle
+    line(x[0], y[0], x[1], y[1]);
+    line(x[1], y[1], x[2], y[2]);
+    line(x[2], y[2], x[0], y[0]);
+
+    	
+    float theta = 45;
+    rotate(x, y, theta);
+
+    // Draw the rotated triangle
+    setcolor(GREEN);
+    line(x[0], y[0], x[1], y[1]);
+    line(x[1], y[1], x[2], y[2]);
+    line(x[2], y[2], x[0], y[0]);
+    
+    
+    int tx = 20, ty = 20;
+    translate(x, y, tx, ty);
+
+    // Draw the scaled triangle
+    setcolor(YELLOW);
+    line(x[0], y[0], x[1], y[1]);
+    line(x[1], y[1], x[2], y[2]);
+    line(x[2], y[2], x[0], y[0]);
+
+
+    getch();
+    closegraph();
+    return 0;
+}
+
+
+
+
+15. Write a C program to show that R(θ1) . R(θ2) = R(θ1 + θ2)
+
+
+#include <stdio.h>
+#include <math.h>
+
+void rotate(int x, int y, int theta, int *x_new, int *y_new) {
+    double rad = theta * (M_PI / 180.0); // Convert angle to radians
+    *x_new = (int)(x * cos(rad) - y * sin(rad));
+    *y_new = (int)(x * sin(rad) + y * cos(rad));
+}
+
+int main() {
+    int x = 100, y = 100; // Initial point
+    int theta1 = 30; // First rotation angle
+    int theta2 = 45; // Second rotation angle
+    int x1, y1;
+    rotate(x, y, theta1, &x1, &y1);
+    int x2, y2;
+    rotate(x1, y1, theta2, &x2, &y2);
+    int theta_combined = theta1 + theta2;
+    int x_combined, y_combined;
+    rotate(x, y, theta_combined, &x_combined, &y_combined);
+    printf("After rotating by %d degrees and then %d degrees:\n", theta1, theta2);
+    printf("Resulting coordinates: (%d, %d)\n", x2, y2);    
+    printf("After rotating by %d degrees:\n", theta_combined);
+    printf("Resulting coordinates: (%d, %d)\n", x_combined, y_combined);
+    if (x2 == x_combined && y2 == y_combined) {
+        printf("R(%d) . R(%d) = R(%d)\n", theta1, theta2, theta_combined);
+    } else {
+        printf("R(%d) . R(%d) != R(%d)\n", theta1, theta2, theta_combined);
+    }
+    
+    return 0;
+}
+
+
+
+
+16. Write a C program to show that R(θ1) . R(θ2) = R(θ2) . R(θ1)
+
+#include <stdio.h>
+#include <graphics.h>
+#include <math.h>
+#define PI 3.14159265
+
+void multiplyMatrices(double mat1[2][2], double mat2[2][2], double result[2][2]) {
+    result[0][0] = mat1[0][0] * mat2[0][0] + mat1[0][1] * mat2[1][0];
+    result[0][1] = mat1[0][0] * mat2[0][1] + mat1[0][1] * mat2[1][1];
+    result[1][0] = mat1[1][0] * mat2[0][0] + mat1[1][1] * mat2[1][0];
+    result[1][1] = mat1[1][0] * mat2[0][1] + mat1[1][1] * mat2[1][1];
+}
+
+void getRotationMatrix(double theta, double rotationMatrix[2][2]) {
+    double rad = theta * PI / 180.0;
+    rotationMatrix[0][0] = cos(rad);
+    rotationMatrix[0][1] = -sin(rad);
+    rotationMatrix[1][0] = sin(rad);
+    rotationMatrix[1][1] = cos(rad);
+}
+
+int main() {
+    int gd = DETECT, gm;
+    initgraph(&gd, &gm, "");
+
+    double theta1, theta2;
+    printf("Enter the angle theta1 in degrees: ");
+    scanf("%lf", &theta1);
+    printf("Enter the angle theta2 in degrees: ");
+    scanf("%lf", &theta2);
+
+    double rotationMatrix1[2][2], rotationMatrix2[2][2], result1[2][2], result2[2][2];
+    getRotationMatrix(theta1, rotationMatrix1);
+    getRotationMatrix(theta2, rotationMatrix2);
+
+    multiplyMatrices(rotationMatrix1, rotationMatrix2, result1);
+    multiplyMatrices(rotationMatrix2, rotationMatrix1, result2);
+
+    printf("R(theta1) . R(theta2):\n");
+    printf("[%.2f, %.2f]\n", result1[0][0], result1[0][1]);
+    printf("[%.2f, %.2f]\n", result1[1][0], result1[1][1]);
+
+    printf("\nR(theta2) . R(theta1):\n");
+    printf("[%.2f, %.2f]\n", result2[0][0], result2[0][1]);
+    printf("[%.2f, %.2f]\n", result2[1][0], result2[1][1]);
+
+    getch();
+    closegraph();
+    return 0;
+}
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+17. Write a C program to show that two successive translations are additive in nature.
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+18. Write a C program to show that two successive rotations are commutative in nature.
+
+#include <stdio.h>
+#include <graphics.h>
+#include <math.h>
+#define PI 3.14159265
+
+void multiplyMatrices(double mat1[2][2], double mat2[2][2], double result[2][2]) {
+    result[0][0] = mat1[0][0] * mat2[0][0] + mat1[0][1] * mat2[1][0];
+    result[0][1] = mat1[0][0] * mat2[0][1] + mat1[0][1] * mat2[1][1];
+    result[1][0] = mat1[1][0] * mat2[0][0] + mat1[1][1] * mat2[1][0];
+    result[1][1] = mat1[1][0] * mat2[0][1] + mat1[1][1] * mat2[1][1];
+}
+
+void getRotationMatrix(double theta, double rotationMatrix[2][2]) {
+    double rad = theta * PI / 180.0;
+    rotationMatrix[0][0] = cos(rad);
+    rotationMatrix[0][1] = -sin(rad);
+    rotationMatrix[1][0] = sin(rad);
+    rotationMatrix[1][1] = cos(rad);
+}
+
+int main() {
+    int gd = DETECT, gm;
+    initgraph(&gd, &gm, "");
+
+    double theta1, theta2;
+    printf("Enter the angle theta1 in degrees: ");
+    scanf("%lf", &theta1);
+    printf("Enter the angle theta2 in degrees: ");
+    scanf("%lf", &theta2);
+
+    double rotationMatrix1[2][2], rotationMatrix2[2][2], result1[2][2], result2[2][2];
+    getRotationMatrix(theta1, rotationMatrix1);
+    getRotationMatrix(theta2, rotationMatrix2);
+
+    multiplyMatrices(rotationMatrix1, rotationMatrix2, result1);
+    multiplyMatrices(rotationMatrix2, rotationMatrix1, result2);
+
+    printf("R(theta1) . R(theta2):\n");
+    printf("[%.2f, %.2f]\n", result1[0][0], result1[0][1]);
+    printf("[%.2f, %.2f]\n", result1[1][0], result1[1][1]);
+
+    printf("\nR(theta2) . R(theta1):\n");
+    printf("[%.2f, %.2f]\n", result2[0][0], result2[0][1]);
+    printf("[%.2f, %.2f]\n", result2[1][0], result2[1][1]);
+
+    getch();
+    closegraph();
+    return 0;
+}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+19. Write a C program to show that two successive translations are commutative in nature.
+
+
+
+20. Write a C Program to show that Reflection about a line Y=X is equivalent to reflection
+relative to X-axis followed by anticlockwise rotation of 90.
+
+
+
+21. Write a Program to implement all type of reflections about X axis and about Y axis of a triangle.
+
+#include <graphics.h>
+#include <stdio.h>
+
+// Function to draw a triangle
+void drawTriangle(int x[], int y[], int color) {
+    setcolor(color);
+    line(x[0], y[0], x[1], y[1]);
+    line(x[1], y[1], x[2], y[2]);
+    line(x[2], y[2], x[0], y[0]);
+}
+
+// Function to reflect a triangle about the X-axis
+void reflectX(int x[], int y[], int x_ref[], int y_ref[]) {
+    for (int i = 0; i < 3; i++) {
+        x_ref[i] = x[i];
+        y_ref[i] = getmaxy() - y[i];
+    }
+}
+
+// Function to reflect a triangle about the Y-axis
+void reflectY(int x[], int y[], int x_ref[], int y_ref[]) {
+    for (int i = 0; i < 3; i++) {
+        x_ref[i] = getmaxx() - x[i];
+        y_ref[i] = y[i];
+    }
+}
+
+int main() {
+    int gd = DETECT, gm;
+    int x[] = {100, 200, 150}; // Original x-coordinates of the triangle vertices
+    int y[] = {100, 100, 200}; // Original y-coordinates of the triangle vertices
+    int x_ref[3], y_ref[3];
+
+    // Initialize graphics mode
+    initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");
+
+    // Draw the original triangle
+    drawTriangle(x, y, WHITE);
+
+    int choice;
+    
+    while(1) {
+   	    printf(" 1. Reflect about X-Axis\n 2. Reflect about Y-Axis\n 3. Exit\n Enter Your Choice: ");
+        scanf("%d", &choice);
+
+        switch(choice) {
+            case 1:
+                reflectX(x, y, x_ref, y_ref);
+                drawTriangle(x_ref, y_ref, WHITE); // Draw the reflected triangle in red color
+                break;
+
+            case 2:
+                reflectY(x, y, x_ref, y_ref);
+                drawTriangle(x_ref, y_ref, WHITE); // Draw the reflected triangle in green color
+                break;
+
+            case 3:
+                printf("Exiting the code...");
+                closegraph();
+                return 0;
+
+            default:
+                printf("Invalid choice. Please enter a valid choice.\n");
+        }
+    }
+
+    return 0;
+}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+22. Write a Program to implement all type of reflections about origin and about a line Y = X for a triangle.
+
+
+23. Write a Program to implement X and Y shear transformation
+
+
+24. Write a Program to implement rotation about arbitrary point.
+
+
+25. Write a Program to implement Cohen Sutherland line clipping algorithm.
+
+#include<graphics.h>
+#include<conio.h>
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+int rcode_begin[4]={0,0,0,0},rcode_end[4]={0,0,0,0},region_code[4];
+int W_xmax, W_ymax, W_xmin, W_ymin, flag=0;
+float slope;
+int x, y, x1, y1, i, xc, yc;
+
+int gr=DETECT,gm;
+initgraph(&gr,&gm,"C:\\TURBOC3\\BGI");
+printf("\n Cohen Sutherland Line Clipping algorithm ");
+printf("\n First, enter XMin, YMin =");
+scanf("%d %d",&W_xmin,&W_ymin);
+
+printf("\n Now, enter XMax, YMax =");
+scanf("%d %d",&W_xmax,&W_ymax);
+
+printf("\n Please enter intial point x and y= ");
+scanf("%d %d",&x,&y);
+
+
+printf("\n Now, enter final point x1 and y1= ");
+scanf("%d %d",&x1,&y1);
+
+cleardevice();
+
+rectangle(W_xmin,W_ymin,W_xmax,W_ymax);
+line(x,y,x1,y1);
+if(y>W_ymax) {
+rcode_begin[0]=1;
+flag=1 ;
+}
+if(y<W_ymin) {
+rcode_begin[1]=1;
+flag=1;
+}
+if(x>W_xmax) {
+rcode_begin[2]=1;
+flag=1;
+}
+if(x<W_xmin) {
+rcode_begin[3]=1;
+flag=1;
+}
+if(y1>W_ymax){
+rcode_end[0]=1;
+flag=1;
+}
+if(y1<W_ymin) {
+rcode_end[1]=1;
+flag=1;
+}
+if(x1>W_xmax){
+rcode_end[2]=1;
+flag=1;
+}
+
+if(x1<W_xmin){
+rcode_end[3]=1;
+flag=1;
+}
+if(flag==0)
+{
+printf("No need of clipping as it is already in window");
+getch();
+}
+flag=1;
+for(i=0;i<4;i++){
+region_code[i]= rcode_begin[i] && rcode_end[i] ;
+if(region_code[i]==1)
+flag=0;
+}
+if(flag==0)
+{
+printf("\n Line is completely outside the window");
+
+
+getch();
+}
+else{
+slope=(float)(y1-y)/(x1-x);
+if(rcode_begin[2]==0 && rcode_begin[3]==1) //left
+{
+y=y+(float) (W_xmin-x)*slope ;
+x=W_xmin;
+
+}
+if(rcode_begin[2]==1 && rcode_begin[3]==0)
+
+// right
+
+{
+y=y+(float) (W_xmax-x)*slope ;
+x=W_xmax;
+
+}
+if(rcode_begin[0]==1 && rcode_begin[1]==0)
+{
+x=x+(float) (W_ymax-y)/slope ;
+y=W_ymax;
+}
+if(rcode_begin[0]==0 && rcode_begin[1]==1)
+{
+x=x+(float) (W_ymin-y)/slope ;
+y=W_ymin;
+}
+if(rcode_end[2]==0 && rcode_end[3]==1) //left
+{
+y1=y1+(float) (W_xmin-x1)*slope ;
+x1=W_xmin;
+}
+if(rcode_end[2]==1 && rcode_end[3]==0)
+{
+y1=y1+(float) (W_xmax-x1)*slope ;
+x1=W_xmax;
+}
+if(rcode_end[0]==1 && rcode_end[1]==0)
+{
+x1=x1+(float) (W_ymax-y1)/slope ;
+y1=W_ymax;
+}
+if(rcode_end[0]==0 && rcode_end[1]==1)
+{
+x1=x1+(float) (W_ymin-y1)/slope ;
+y1=W_ymin;
+}
+}
+getch();
+clearviewport();
+rectangle(W_xmin,W_ymin,W_xmax,W_ymax);
+setcolor(WHITE);
+line(x,y,x1,y1);
+getch();
+closegraph();
+}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+26. Write a Program to implement midpoint line clipping algorithm.
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<math.h>
+#include<graphics.h>
+#include<dos.h>
+#define TOP 1
+#define BOTTOM 2
+#define RIGHT 4
+#define LEFT 8
+
+void drawwindow(int x1, int y1, int x2, int y2);
+void drawline (int x1, int y1, int x2, int y2, int cl);
+int setcode(int x, int y, int x1, int y1, int x2, int y2);
+int visibility (int code1, int code2);
+void midsub(int x1, int y1, int x2, int y2, int win_x1, int win_y1, int
+win_x2, int win_y2);
+int main()
+{
+int gd=DETECT, gm, v, x1, y1, x2, y2, win_x1, win_y1, win_x2,win_y2;
+initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");
+cleardevice();
+printf("\n\n\t\tENTER WINDOW COORDINATES (x1, y1, x2, y2):");
+scanf("%d %d %d %d", &win_x1, &win_y1, &win_x2, &win_y2);
+drawwindow(win_x1, win_y1, win_x2, win_y2);
+getch();
+printf("\n\n\t\tENTER END-POINT 1 (x,y): ");
+scanf("%d %d",&x1, &y1);
+printf("\n\n\t\tENTER END-POINT 2 (x,y): ");
+scanf("%d %d",&x2, &y2);
+cleardevice();
+drawwindow(win_x1, win_y1, win_x2, win_y2);
+getch();
+drawline(x1, y1, x2, y2, 15);
+getch();
+cleardevice();
+drawwindow(win_x1, win_y1, win_x2, win_y2);
+
+
+midsub(x1, y1, x2, y2, win_x1, win_y1, win_x2, win_y2);
+getch();
+closegraph();
+return(0);
+}
+
+void midsub(int x1, int y1, int x2, int y2, int win_x1, int win_y1, int
+win_x2, int win_y2)
+{
+int code1, code2, v;
+code1 = setcode(x1, y1, win_x1, win_y1, win_x2, win_y2);
+code2 = setcode(x2, y2, win_x1, win_y1, win_x2, win_y2);
+v = visibility(code1, code2);
+switch(v)
+{
+case 0: /* Line completely visible */
+drawline(x1, y1, x2, y2, 15);
+break;
+case 1: /* Line completely invisible */
+break;
+case 2: /* Line partly visible */
+
+
+
+{
+int midx = (x1 + x2) / 2;
+int midy = (y1 + y2) / 2;
+if ((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1) < 2) {
+// Stop recursion if the line segment is very small
+break;
+}
+midsub(x1, y1, midx, midy, win_x1, win_y1, win_x2,
+win_y2);
+midx++;
+midy++;
+midsub(midx, midy, x2, y2, win_x1, win_y1, win_x2,
+win_y2);
+break;
+}
+}
+}
+
+void drawwindow(int x1, int y1, int x2, int y2)
+{
+setcolor(RED);
+
+
+line(x1, y1, x2, y1);
+line(x2, y1, x2, y2);
+line(x2, y2, x1, y2);
+line(x1, y2, x1, y1);
+}
+
+void drawline (int x1, int y1, int x2, int y2, int cl)
+{
+setcolor(cl);
+line(x1, y1, x2, y2);
+}
+
+int setcode(int x, int y, int x1, int y1, int x2, int y2)
+{
+int code = 0;
+if(y <= y1)
+code |= TOP;
+if(y >= y2)
+code |= BOTTOM;
+if(x >= x2)
+code |= RIGHT;
+
+
+if(x <= x1)
+code |= LEFT;
+return code;
+}
+
+int visibility (int code1, int code2)
+{
+if((code1 & code2) != 0)
+return 1; // Line completely invisible
+else if((code1 | code2) == 0)
+return 0; // Line completely visible
+else
+return 2; // Line partly visible
+}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+27. Write a Program to implement Sutherland-Hodgeman Polygon clipping algorithm.
+
+
+28. Write a Program to implement Generalized Polygon clipping algorithm.
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+29. Write a Program to draw a Koch curve upto ‘n’ iterations
+
+#include <graphics.h>
+#include <stdio.h>
+#include <math.h>
+
+// Function to draw a Koch curve
+void koch(int x1, int y1, int x2, int y2, int n) {
+    float angle = M_PI / 3; // 60 degrees in radians
+    int x3, y3, x4, y4, x5, y5;
+
+    if (n == 0) {
+        line(x1, y1, x2, y2);
+    } else {
+        x3 = (2 * x1 + x2) / 3;
+        y3 = (2 * y1 + y2) / 3;
+
+        x5 = (x1 + 2 * x2) / 3;
+        y5 = (y1 + 2 * y2) / 3;
+
+        x4 = (int)(x3 + (x5 - x3) * cos(angle) - (y5 - y3) * sin(angle));
+        y4 = (int)(y3 + (x5 - x3) * sin(angle) + (y5 - y3) * cos(angle));
+
+        koch(x1, y1, x3, y3, n - 1);
+        koch(x3, y3, x4, y4, n - 1);
+        koch(x4, y4, x5, y5, n - 1);
+        koch(x5, y5, x2, y2, n - 1);
+    }
+}
+
+int main() {
+    int gd = DETECT, gm,x1,y1,x2,y2,n;
+    initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");
+
+ x1 = 50, y1 = 300, x2 = 450, y2 = 300;
+   n = 3;
+    koch(x1, y1, x2, y2, n);
+
+    getch();
+    closegraph();
+    return 0;
+}
+
+
+
+
+30. Write a Program to draw a Hilbert curve upto ‘n’ iterations.
+
+
+31. Write a Program to draw a Bezier curve upto ‘n’ iterations using midpoint method.
+
+#include <graphics.h>
+#include <conio.h>
+
+// Function to draw a Bezier curve using the midpoint method
+void drawBezier(int x0, int y0, int x1, int y1, int x2, int y2, int x3, int y3, int iterations) {
+    if (iterations == 0) {
+        // Draw a straight line from the start to the end point
+        line(x0, y0, x3, y3);
+    } else {
+        // Calculate the midpoints of the lines
+        int x01 = (x0 + x1) / 2;
+        int y01 = (y0 + y1) / 2;
+        int x12 = (x1 + x2) / 2;
+        int y12 = (y1 + y2) / 2;
+        int x23 = (x2 + x3) / 2;
+        int y23 = (y2 + y3) / 2;
+
+        // Calculate the midpoints of the new lines
+        int x012 = (x01 + x12) / 2;
+        int y012 = (y01 + y12) / 2;
+        int x123 = (x12 + x23) / 2;
+        int y123 = (y12 + y23) / 2;
+
+        // Calculate the midpoint of the curve
+        int x0123 = (x012 + x123) / 2;
+        int y0123 = (y012 + y123) / 2;
+
+        // Recursively draw the two halves of the Bezier curve
+        drawBezier(x0, y0, x01, y01, x012, y012, x0123, y0123, iterations - 1);
+        drawBezier(x0123, y0123, x123, y123, x23, y23, x3, y3, iterations - 1);
+    }
+}
+
+int main() {
+    int gd = DETECT, gm,x0,y0,x1,y1,x2,y2,x3,y3,iterations;
+    initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");
+
+    // Define the control points for the Bezier curve
+     x0 = 100, y0 = 200;
+     x1 = 150, y1 = 100;
+     x2 = 250, y2 = 100;
+     x3 = 300, y3 = 200;
+     iterations = 5; // Number of iterations
+
+    // Draw the Bezier curve
+    drawBezier(x0, y0, x1, y1, x2, y2, x3, y3, iterations);
+
+    getch();
+    closegraph();
+    return 0;
+}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+32. Write a Program to draw a coastline using Fractal line upto ‘n’ iterations.
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <graphics.h>
+#include <math.h>
+
+// Function to draw Coastline Fractal Line
+void drawCoastlineFractalLine(int x1, int y1, int x2, int y2, int depth) {
+    if (depth == 0) {
+        line(x1, y1, x2, y2);
+    } else {
+        int deltaX = x2 - x1;
+        int deltaY = y2 - y1;
+
+        // Randomly perturb the midpoints to create a coastline-like shape
+        int perturbation = rand() % 20; // Adjust this value for more or less rugged coastlines
+        int x3 = x1 + deltaX / 3;
+        int y3 = y1 + deltaY / 3 + perturbation;
+
+        perturbation = rand() % 20;
+        int x4 = x1 + 2 * deltaX / 3;
+        int y4 = y1 + 2 * deltaY / 3 + perturbation;
+
+        // Recursively draw the fractal lines
+        drawCoastlineFractalLine(x1, y1, x3, y3, depth - 1);
+        drawCoastlineFractalLine(x3, y3, x4, y4, depth - 1);
+        drawCoastlineFractalLine(x4, y4, x2, y2, depth - 1);
+    }
+}
+
+// Function to draw Coastline Fractal Line Wrapper
+void drawCoastlineFractalLineWrapper() {
+    int gd = DETECT, gm;
+    int x1 = 100, y1 = 300; // Adjust these coordinates for different starting points
+    int x2 = 500, y2 = 300; // Adjust these coordinates for different ending points
+    int depth;
+
+    printf("Enter the number of iterations (depth): ");
+    scanf("%d", &depth);
+
+    initgraph(&gd, &gm, "C://TURBOC3//BGI");
+
+    setcolor(WHITE);
+    drawCoastlineFractalLine(x1, y1, x2, y2, depth);
+
+    getch();
+    closegraph();
+}
+
+int main() {
+
+drawCoastlineFractalLineWrapper(); 
+
+return 0;
+}
+
+@ryan
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+33. Write a Program to draw a mountain using Fractal surface upto ‘n’ iterations.
+
+#include <graphics.h>
+#include <math.h>
+
+// Function to draw a Koch curve
+void drawKochCurve(float x1, float y1, float x2, float y2, int iterations) {
+    if (iterations == 0) {
+        // Base case: draw a line segment
+        line(x1, y1, x2, y2);
+    } else {
+        // Calculate the 1/3 and 2/3 points of the line segment
+        float x1_3 = x1 + (x2 - x1) / 3;
+        float y1_3 = y1 + (y2 - y1) / 3;
+        float x2_3 = x1 + 2 * (x2 - x1) / 3;
+        float y2_3 = y1 + 2 * (y2 - y1) / 3;
+
+        // Calculate the midpoint of the line segment
+        float xm = (x1 + x2) / 2;
+        float ym = (y1 + y2) / 2;
+
+        // Calculate the height of the triangle
+        float height = sqrt(3) * (x2 - x1) / 6;
+
+        // Calculate the coordinates of the peak of the triangle
+        float xp = xm + height * cos(M_PI / 3);
+        float yp = ym + height * sin(M_PI / 3);
+
+        // Recursively draw Koch curves for the three segments of the triangle
+        drawKochCurve(x1, y1, x1_3, y1_3, iterations - 1);
+        drawKochCurve(x1_3, y1_3, xp, yp, iterations - 1);
+        drawKochCurve(xp, yp, x2_3, y2_3, iterations - 1);
+        drawKochCurve(x2_3, y2_3, x2, y2, iterations - 1);
+    }
+}
+
+int main() {
+    int gd = DETECT, gm;
+    initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");
+
+    // Define the vertices of the triangle
+    float x1 = 100, y1 = 400;
+    float x2 = 300, y2 = 100;
+    float x3 = 500, y3 = 400;
+
+    // Define the number of iterations for the Koch curve
+    int iterations = 4;
+
+    // Draw the Koch curve for each side of the triangle
+    drawKochCurve(x1, y1, x2, y2, iterations);
+    drawKochCurve(x2, y2, x3, y3, iterations);
+    drawKochCurve(x3, y3, x1, y1, iterations);
+
+    getch();
+    closegraph();
+    return 0;
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+34. Write a program to achieve various animations without using any readymade line or
+circle function. Use DDA or Bresenham algorithm for implementation of line and
+circle. ( for sample animations refer attached sheet).
+
+
+34. Write a program to achieve various animations without using any readymade line or 
+circle function. Use DDA or Bresenham algorithm for implementation of line and 
+circle. ( for sample animations refer attached sheet).
+
+34.1 pendulum
+
+#include <graphics.h>
+#include <stdio.h>
+#include <math.h>
+#include <conio.h>
+#define PI 3.14
+
+int gd = DETECT, gm;
+int pivotx, pivoty;
+double thetamax, theta;
+double len = 260;
+int x, y, ymax, xmax;
+int bobradius = 30;
+int xsign = -1, ysign = 1;
+double omega;
+
+void drawLine(int x1, int y1, int x2, int y2) {
+    int dx = x2 - x1;
+    int dy = y2 - y1;
+    int steps, k;
+    float xIncrement, yIncrement, x = x1, y = y1;
+
+    if (abs(dx) > abs(dy))
+        steps = abs(dx);
+    else
+        steps = abs(dy);
+
+    xIncrement = dx / (float) steps;
+    yIncrement = dy / (float) steps;
+
+    for (k = 0; k < steps; k++) {
+        x += xIncrement;
+        y += yIncrement;
+        if ((int)(x + 0.5) == x2 && (int)(y + 0.5) == y2) {
+            break; // Stop drawing at the endpoint
+        }
+        putpixel((int)(x + 0.5), (int)(y + 0.5), WHITE);
+    }
+}
+void brescir(int x, int y, int r, int color) {
+    int i = 0, j = r, p = 3 - 2 * r;
+    while (i <= j) {
+        putpixel(x + i, y + j, color);
+        putpixel(x - i, y - j, color);
+        putpixel(x + j, y + i, color);
+        putpixel(x - j, y - i, color);
+        putpixel(x - i, y + j, color);
+        putpixel(x + i, y - j, color);
+        putpixel(x - j, y + i, color);
+        putpixel(x + j, y - i, color);
+        if (p < 0) {
+            i++;
+            p = p + 4 * i + 6;
+        } else {
+            i++;
+            j--;
+            p = p + 4 * (i - j) + 10;
+        }
+    }
+}
+void paint() {
+    // Clear the screen
+    cleardevice();
+
+    // Draw the pivot
+    setcolor(WHITE);
+    brescir(pivotx, pivoty, 8,WHITE);
+    setfillstyle(SOLID_FILL, WHITE);
+    floodfill(pivotx, pivoty, WHITE);
+
+    // Draw the pendulum line and bob
+    drawLine(pivotx, pivoty, x, y);
+    setcolor(WHITE);
+    brescir(x, y, bobradius,WHITE);
+      setfillstyle(SOLID_FILL, WHITE);
+    floodfill(x,y, WHITE);
+
+}
+
+void main() {
+    double decr;
+    initgraph(&gd, &gm, "C:\\TURBOC3\\BGI\\");
+    thetamax = 60 * PI / 180;
+    pivotx = getmaxx() / 2;
+    pivoty = 30;
+    ymax = (int)(pivoty + len * cos(thetamax));
+    xmax = (int)(pivotx + len * sin(thetamax));
+    x = xmax;
+    y = ymax;
+    theta = thetamax;
+
+    while (1) {
+        if (kbhit() && getch() == 13) { // Check if Enter key (ASCII 13) is pressed
+            break;
+        }
+
+        if (x >= pivotx + abs(len * sin(thetamax))) {
+            xsign = -1;
+            ysign *= -1;
+            x = xmax - 1;
+            delay(40);
+        } else if (x <= pivotx - abs(len * sin(thetamax))) {
+            ysign *= -1;
+            xsign = 1;
+            x = (int)(pivotx - abs(len * sin(thetamax)) + 2);
+            delay(40);
+        } else if (y >= pivoty + len) {
+            ysign *= -1;
+        }
+
+        omega = y / 60 * PI / 180;
+        decr = xsign * omega;
+        theta = theta + decr;
+        x = (int)(pivotx + len * sin(theta));
+        y = (int)(pivoty + len * cos(theta));
+        paint();
+        delay(40);
+    }
+
+    closegraph();
+}
+
+
+
+
+34.2. circle in circle
+
+#include <graphics.h>
+#include <dos.h>
+#include <stdio.h>
+#include <conio.h>
+#include <math.h>
+
+void brescir(int x, int y, int r, int color) {
+    int i = 0, j = r, p = 3 - 2 * r;
+    while (i <= j) {
+        putpixel(x + i, y + j, color);
+        putpixel(x - i, y - j, color);
+        putpixel(x + j, y + i, color);
+        putpixel(x - j, y - i, color);
+        putpixel(x - i, y + j, color);
+        putpixel(x + i, y - j, color);
+        putpixel(x - j, y + i, color);
+        putpixel(x + j, y - i, color);
+        if (p < 0) {
+            i++;
+            p = p + 4 * i + 6;
+        } else {
+            i++;
+            j--;
+            p = p + 4 * (i - j) + 10;
+        }
+    }
+}
+
+#define PI 3.14159265
+
+int main()
+{
+    // Radius and center of the main circle
+    int centerX = 150;
+    int centerY = 150;
+    int radius_main = 100; // Radius of the main circle
+    int radius_moving = 12; // Radius of the moving circle
+
+    // Initial angle for the moving circle
+    float angle = 0;
+
+    int gd = DETECT, gm, i, x, y;
+    initgraph(&gd, &gm, "C:/TURBOC3/BGI");
+
+    while (1)
+    {
+        // Clear the screen
+        cleardevice();
+
+        // Draw the main circle using Bresenham's algorithm
+        brescir(centerX, centerY, radius_main, WHITE);
+
+        // Calculate position of moving circle
+        x = centerX + (int)((radius_main - radius_moving) * cos(angle * PI / 180));
+        y = centerY + (int)((radius_main - radius_moving) * sin(angle * PI / 180));
+
+        // Draw the moving circle using Bresenham's algorithm
+        brescir(x, y, radius_moving, WHITE);
+
+        // Delay to slow down the speed of moving circle
+        delay(50);
+
+        // Update the angle for next position
+        angle += 1;
+
+        // Reset angle when a complete circle is completed
+        if (angle >= 360)
+            angle = 0;
+
+        // Check if Enter key is pressed to exit
+        if (kbhit()) {
+            if (getch() == '\r')  // '\r' represents Enter key
+                break;
+        }
+    }
+
+    getch();
+    closegraph();
+    return 0;
+}
+
+
+34.3 circle outside circle
+
+#include <graphics.h>
+#include <dos.h>
+#include <stdio.h>
+#include <conio.h>
+#include <math.h>
+
+void brescir(int x, int y, int r, int color) {
+    int i = 0, j = r, p = 3 - 2 * r;
+    while (i <= j) {
+        putpixel(x + i, y + j, color);
+        putpixel(x - i, y - j, color);
+        putpixel(x + j, y + i, color);
+        putpixel(x - j, y - i, color);
+        putpixel(x - i, y + j, color);
+        putpixel(x + i, y - j, color);
+        putpixel(x - j, y + i, color);
+        putpixel(x + j, y - i, color);
+        if (p < 0) {
+            i++;
+            p = p + 4 * i + 6;
+        } else {
+            i++;
+            j--;
+            p = p + 4 * (i - j) + 10;
+        }
+    }
+}
+
+#define PI 3.14159265
+
+int main()
+{
+    // Radius and center of the main circle
+    int centerX = 150;
+    int centerY = 150;
+    int radius_main = 100; // Radius of the main circle
+    int radius_moving = 8; // Radius of the moving circle
+
+    // Initial angle for the moving circle
+    float angle = 0;
+
+    int gd = DETECT, gm, i, x, y;
+    initgraph(&gd, &gm, "C:/TURBOC3/BGI");
+
+    while (1)
+    {
+        // Clear the screen
+        cleardevice();
+
+        // Draw the main circle using Bresenham's algorithm
+        brescir(centerX, centerY, radius_main, WHITE);
+
+        // Calculate position of moving circle
+        x = centerX + (int)((radius_main + radius_moving) * cos(angle * PI / 180));
+        y = centerY + (int)((radius_main + radius_moving) * sin(angle * PI / 180));
+
+        // Draw the moving circle using Bresenham's algorithm
+        brescir(x, y, radius_moving, WHITE);
+
+        // Delay to slow down the speed of moving circle
+        delay(50);
+
+        // Update the angle for next position
+        angle += 1;
+
+        // Reset angle when a complete circle is completed
+        if (angle >= 360)
+            angle = 0;
+
+        // Check if Enter key is pressed to exit
+        if (kbhit()) {
+            if (getch() == '\r')  // '\r' represents Enter key
+                break;
+        }
+    }
+
+    getch();
+    closegraph();
+    return 0;
+}
+
+
+34.4 circle inside rectangle
+
+#include <graphics.h>
+#include <dos.h>
+#include <stdio.h>
+#include <conio.h>
+#include <math.h>
+
+void drawLine(int x1, int y1, int x2, int y2) {
+    int dx = x2 - x1;
+    int dy = y2 - y1;
+    int steps, k;
+    float xIncrement, yIncrement, x = x1, y = y1;
+
+    if (abs(dx) > abs(dy))
+        steps = abs(dx);
+    else
+        steps = abs(dy);
+
+    xIncrement = dx / (float) steps;
+    yIncrement = dy / (float) steps;
+
+    for (k = 0; k < steps; k++) {
+        x += xIncrement;
+        y += yIncrement;
+        if ((int)(x + 0.5) == x2 && (int)(y + 0.5) == y2) {
+            break; // Stop drawing at the endpoint
+        }
+        putpixel((int)(x + 0.5), (int)(y + 0.5), WHITE);
+    }
+}
+
+void brescir(int x, int y, int r, int color) {
+    int i = 0, j = r, p = 3 - 2 * r;
+    while (i <= j) {
+        putpixel(x + i, y + j, color);
+        putpixel(x - i, y - j, color);
+        putpixel(x + j, y + i, color);
+        putpixel(x - j, y - i, color);
+        putpixel(x - i, y + j, color);
+        putpixel(x + i, y - j, color);
+        putpixel(x - j, y + i, color);
+        putpixel(x + j, y - i, color);
+        if (p < 0) {
+            i++;
+            p = p + 4 * i + 6;
+        } else {
+            i++;
+            j--;
+            p = p + 4 * (i - j) + 10;
+        }
+    }
+}
+
+int main()
+{
+    int gd = DETECT, gm, i, x, y, j = 0;
+    initgraph(&gd, &gm, "C:/TURBOC3/BGI");
+ 
+    drawLine(50, 50, 250, 50);
+    drawLine(250, 50, 250, 250);
+    drawLine(250, 250, 50, 250);
+    drawLine(50, 250, 50, 50);
+
+    // Initial coordinates of ball
+    x = 58;
+    y = 242;
+
+    while (1)
+    {
+        // Clear the screen
+        cleardevice();
+
+        // Draw the square
+        drawLine(50, 50, 250, 50);
+        drawLine(250, 50, 250, 250);
+        drawLine(250, 250, 50, 250);
+        drawLine(50, 250, 50, 50);
+
+        // Draw the ball
+    brescir(x, y,10, WHITE); // Corrected the function name and added the color parameter
+
+        // Delay to slow down the speed of ball
+        delay(50);
+
+        // Check for Enter key press to exit
+        if (kbhit() && getch() == 13) {
+            break;
+        }
+
+        // Logic to move the ball in square path
+        if (x <= 58 && y > 58)
+            y = y - 5;
+        if (x < 242 && y <= 58)
+            x = x + 5;
+        if (x >= 242 && y < 242)
+            y = y + 5;
+        if (x > 58 && y >= 242)
+            x = x - 5;
+
+        j++;
+    }
+
+    getch();
+    closegraph();
+    return 0;
+}
+
+34.8 circle wave
+
+#include <graphics.h>
+#include <dos.h>
+#include <stdio.h>
+#include <conio.h>
+#include <math.h>
+
+#define PI 3.14159265
+void brescir(int x, int y, int r, int color) {
+    int i = 0, j = r, p = 3 - 2 * r;
+    while (i <= j) {
+        putpixel(x + i, y + j, color);
+        putpixel(x - i, y - j, color);
+        putpixel(x + j, y + i, color);
+        putpixel(x - j, y - i, color);
+        putpixel(x - i, y + j, color);
+        putpixel(x + i, y - j, color);
+        putpixel(x - j, y + i, color);
+        putpixel(x + j, y - i, color);
+        if (p < 0) {
+            i++;
+            p = p + 4 * i + 6;
+        } else {
+            i++;
+            j--;
+            p = p + 4 * (i - j) + 10;
+        }
+    }
+}
+int main()
+{
+    int centerX = 100; // Adjusted centerX for larger view
+    int centerY = 200; // Adjusted centerY for larger view
+    int amplitude = 100; // Increased amplitude for larger wave
+    int wavelength = 200; // Increased wavelength for larger wave
+    int i;
+    float angle = 0;
+
+    int gd = DETECT, gm, x, y;
+    initgraph(&gd, &gm, "C:/TURBOC3/BGI");
+
+    while (1)
+    {
+    cleardevice();
+
+    // Draw the wave with two wavelengths
+    for (i = 0; i < 4 * wavelength; i++) { // Increased range to display larger wave
+        int waveY = centerY + (int)(amplitude * sin(i * 2 * PI / wavelength));
+        putpixel(centerX + i, waveY, WHITE);
+    }
+
+    // Calculate position of moving brescir along wave pattern
+    x = centerX + (int)(angle);
+    y = centerY + (int)(amplitude * sin(angle * 2 * PI / wavelength)) - 8;
+
+    // Draw the moving brescir
+    brescir(x, y, 10,WHITE);
+
+    // Delay to control the speed of moving brescir
+    delay(10);
+
+    // Update the angle for next position
+        angle += 0.1;
+
+        // Check if Enter key is pressed to exit
+        if (kbhit()) {
+            if (getch() == '\r')  // '\r' represents Enter key
+                break;
+        }
+    }
+
+    getch();
+    closegraph();
+    return 0;
+}
+
+
+
+
+
+
+
+34.13 clock
+
+#include <stdio.h>
+#include <graphics.h>
+#include <conio.h>
+void brescir(int x, int y, int r, int color) {
+    int i = 0, j = r, p = 3 - 2 * r;
+    while (i <= j) {
+        putpixel(x + i, y + j, color);
+        putpixel(x - i, y - j, color);
+        putpixel(x + j, y + i, color);
+        putpixel(x - j, y - i, color);
+        putpixel(x - i, y + j, color);
+        putpixel(x + i, y - j, color);
+        putpixel(x - j, y + i, color);
+        putpixel(x + j, y - i, color);
+        if (p < 0) {
+            i++;
+            p = p + 4 * i + 6;
+        } else {
+            i++;
+            j--;
+            p = p + 4 * (i - j) + 10;
+        }
+    }
+}
+void main() {
+    int gd = DETECT, gm, i, j = 96;
+    float k = 90.5;
+
+    initgraph(&gd, &gm, "C:\\TURBOC3\\BGI");
+
+    brescir(320, 240, 105,WHITE);
+
+    settextstyle(TRIPLEX_FONT, HORIZ_DIR, 3);
+    outtextxy(245, 85, "     Clock");
+
+    setfillstyle(SOLID_FILL, 15);
+    floodfill(320, 240, 15);
+
+    while (kbhit() == 0) {
+        k -= 0.1;
+        j -= 6;
+
+        for (i = 90; i >= 1; i -= 6) {
+            if (kbhit() != 0) exit();
+            setcolor(BLACK);
+            setfillstyle(SOLID_FILL, BLACK);
+            pieslice(320, 240, i, i - 1, 80);
+            pieslice(320, 240, j, j - 1, 65);
+            pieslice(320, 240, k, k - 1, 50);
+            delay(1000); // Adjusted delay for seconds line
+            setcolor(WHITE);
+            setfillstyle(SOLID_FILL, WHITE);
+            pieslice(320, 240, i, i - 1, 80);
+            pieslice(320, 240, j, j - 1, 65);
+            pieslice(320, 240, k, k - 1, 50);
+        }
+
+        for (i = 359; i >= 91; i -= 6) {
+            if (kbhit() != 0) exit();
+            setcolor(BLACK);
+            setfillstyle(SOLID_FILL, BLACK);
+            pieslice(320, 240, i, i - 1, 80);
+            pieslice(320, 240, j, j - 1, 65);
+            pieslice(320, 240, k, k - 1, 50);
+            delay(1000); // Adjusted delay for seconds line
+            setcolor(WHITE);
+            setfillstyle(SOLID_FILL, WHITE);
+            pieslice(320, 240, i, i - 1, 80);
+            pieslice(320, 240, j, j - 1, 65);
+            pieslice(320, 240, k, k - 1, 50);
+        }
+
+        if (j <= 6) j = 365;
+        if (k <= 0.5) k = 359;
+    }
+
+    closegraph();
+}
