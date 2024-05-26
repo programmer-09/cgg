@@ -1546,21 +1546,16 @@ int main() {
 #include <math.h>
 #include <graphics.h>
 
-
-void drawLine(int x1, int y1, int x2, int y2) {
-    line(x1, y1, x2, y2);
-}
-
-void hilbertCurve(int x, int y, int xi, int xj, int yi, int yj, int depth) {
+void hilbertCurve(int x, int y, int x1, int x2, int y1, int y2, int depth) {
     if (depth <= 0) {
-        drawLine(x, y, x + xi, y + xj);
+        line(x, y, x + x1, y + x2);
         return;
     }
 
-    hilbertCurve(x, y, yi / 2, yj / 2, xi / 2, xj / 2, depth - 1);
-    hilbertCurve(x + xi / 2, y + xj / 2, xi / 2, xj / 2, yi / 2, yj / 2, depth - 1);
-    hilbertCurve(x + xi / 2 + yi / 2, y + xj / 2 + yj / 2, xi / 2, xj / 2, yi / 2, yj / 2, depth - 1);
-    hilbertCurve(x + xi / 2 + yi, y + xj / 2 + yj, -yi / 2, -yj / 2, -xi / 2, -xj / 2, depth - 1);
+    hilbertCurve(x, y, y1 / 2, y2 / 2, x1 / 2, x2 / 2, depth - 1);
+    hilbertCurve(x + x1 / 2, y + x2 / 2, x1 / 2, x2 / 2, y1 / 2, y2 / 2, depth - 1);
+    hilbertCurve(x + x1 / 2 + y1 / 2, y + x2 / 2 + y2 / 2, x1 / 2, x2 / 2, y1 / 2, y2 / 2, depth - 1);
+    hilbertCurve(x + x1 / 2 + y1, y + x2 / 2 + y2, -y1 / 2, -y2 / 2, -x1 / 2, -x2 / 2, depth - 1);
 }
 
 int main() {
@@ -1583,6 +1578,7 @@ int main() {
 
     return 0;
 }
+
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
