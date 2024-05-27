@@ -1157,6 +1157,17 @@ int main() {
 
 23. Write a Program to implement X and Y shear transformation
 
+// Function to apply shearing across the X-axis
+void shearX(int x[], int y[], int x_shear[], int y_shear[], float shearFactor) {
+    for (int i = 0; i < 3; i++) {
+        x_shear[i] = x[i] + shearFactor * y[i];
+        y_shear[i] = y[i];
+    }
+}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 24. Write a Program to implement rotation about arbitrary point.
 
